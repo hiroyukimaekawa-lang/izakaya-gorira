@@ -1,16 +1,25 @@
 :root {
-  /* Color Palette */
-  --primary-color: #3E2723;
+  /* Color Palette - Warm Brown Theme */
+  --primary-color: #6B4423;
+  /* Rich Brown */
+  --secondary-color: #A0826D;
+  /* Medium Brown */
+  --accent-color: #C17A4A;
+  /* Burnt Orange/Copper */
+  --accent-gold: #D4A574;
+  /* Golden Amber */
+  --text-main: #2C1810;
   /* Deep Brown */
-  --secondary-color: #D7CCC8;
-  /* Warm Beige */
-  --accent-color: #BF360C;
-  /* Warm Orange */
-  --text-main: #212121;
-  /* Ink Black */
-  --text-light: #F5F5F5;
-  --bg-dark: #1A120B;
-  --bg-light: #FAF9F6;
+  --text-light: #FAF7F2;
+  /* Warm Cream */
+  --bg-dark: #3D2817;
+  /* Dark Brown */
+  --bg-light: #F5EFE7;
+  /* Cream Beige */
+  --bg-cream: #FAF7F2;
+  /* Lighter Cream */
+  --border-color: #D4A574;
+  /* Gold accent for borders */
 
   /* Fonts */
   --font-serif: "Noto Serif JP", serif;
@@ -38,6 +47,12 @@ body {
   font-family: var(--font-sans);
   color: var(--text-main);
   background-color: var(--bg-light);
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent,
+      transparent 2px,
+      rgba(107, 68, 35, 0.01) 2px,
+      rgba(107, 68, 35, 0.01) 4px);
   line-height: 1.8;
   overflow-x: hidden;
 }
@@ -96,7 +111,7 @@ img {
   background-color: transparent;
   color: var(--accent-color);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(191, 54, 12, 0.2);
+  box-shadow: 0 10px 20px rgba(193, 122, 74, 0.3);
 }
 
 .btn-outline {
@@ -124,10 +139,10 @@ header {
 }
 
 header.scrolled {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(250, 247, 242, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 20px rgba(107, 68, 35, 0.1);
   color: var(--text-main);
   height: 70px;
 }
@@ -221,7 +236,7 @@ header.scrolled .logo {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('../img/hero_main.png') center/cover no-repeat;
+  background: linear-gradient(rgba(61, 40, 23, 0.5), rgba(107, 68, 35, 0.7)), url('../img/hero_main.png') center/cover no-repeat;
   z-index: -1;
   transform: scale(1.1);
   transition: transform 10s ease-out;
@@ -269,15 +284,19 @@ section {
   margin-bottom: 15px;
 }
 
+.section-title h2 {
+  position: relative;
+}
+
 .section-title h2::after {
   content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 2px;
-  background-color: var(--accent-color);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-color), var(--accent-gold));
 }
 
 .section-title span {
@@ -286,6 +305,34 @@ section {
   letter-spacing: 0.4em;
   color: var(--accent-color);
   margin-bottom: 10px;
+}
+
+/* Concept Section */
+.concept-intro {
+  background-color: var(--bg-cream);
+  position: relative;
+}
+
+.concept-intro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(193, 122, 74, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.concept-text {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--text-main);
 }
 
 /* USP Grid & Feature Sections */
@@ -300,7 +347,8 @@ section {
   position: relative;
   height: 600px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(107, 68, 35, 0.15);
+  border-radius: 4px;
 }
 
 .usp-img {
@@ -320,8 +368,24 @@ section {
   left: 0;
   width: 100%;
   padding: 60px 40px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-  color: white;
+  background: linear-gradient(transparent, rgba(61, 40, 23, 0.95));
+  color: var(--text-light);
+}
+
+#menu {
+  background-color: var(--bg-cream) !important;
+  position: relative;
+}
+
+#menu::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at bottom right, rgba(212, 165, 116, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .feature-section {
@@ -331,31 +395,35 @@ section {
   margin-bottom: 150px;
 }
 
-.feature-section:last-child {
-  margin-bottom: 0;
+.feature-img img {
+  border-radius: 4px;
+  box-shadow: 0 15px 30px rgba(107, 68, 35, 0.1);
 }
 
-.feature-img {
-  flex: 1;
-  position: relative;
+.feature-text h3 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: var(--primary-color);
 }
 
-.feature-img::after {
-  content: "";
-  position: absolute;
-  top: 30px;
-  right: -30px;
-  width: 100%;
-  height: 100%;
-  border: 1px solid var(--secondary-color);
-  z-index: -1;
-}
-
-.feature-text {
-  flex: 1;
+.feature-text p {
+  color: var(--text-main);
+  opacity: 0.9;
 }
 
 /* Access Table */
+#access {
+  background-color: var(--bg-light) !important;
+}
+
+.access-info {
+  background: var(--bg-cream);
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(107, 68, 35, 0.05);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
 .access-table {
   width: 100%;
   border-collapse: collapse;
@@ -365,21 +433,34 @@ section {
   text-align: left;
   padding: 20px 0;
   width: 120px;
-  color: var(--accent-color);
-  font-weight: 500;
-  border-bottom: 1px solid var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .access-table td {
   padding: 20px 0;
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* Footer */
 footer {
-  background-color: var(--bg-dark);
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #4A3022 100%);
   color: var(--text-light);
   padding: 100px 20px 50px;
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(212, 165, 116, 0.05) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .footer-grid {
