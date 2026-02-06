@@ -26,7 +26,7 @@
   --font-sans: "Noto Sans JP", sans-serif;
 
   /* Spacing */
-  --section-padding: 120px 20px;
+  --section-padding: 70px 20px;
   --header-height: 80px;
 
   /* Transitions */
@@ -85,7 +85,15 @@ img {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
+}
+
+.pc-only {
+  display: block;
+}
+
+.sp-only {
+  display: none;
 }
 
 /* Base Components */
@@ -412,9 +420,21 @@ section {
   bottom: 0;
   right: 0;
   width: 300px;
-  height: 300px;
+  height: 100px;
   background: radial-gradient(circle at bottom right, rgba(212, 165, 116, 0.05) 0%, transparent 70%);
   pointer-events: none;
+}
+
+#menu {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  #menu {
+    padding-top: 50px;
+    padding-bottom: 60px;
+  }
 }
 
 .feature-section {
@@ -465,9 +485,88 @@ section {
   transform: scale(1.05);
 }
 
+/* Gallery */
+.gallery-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  align-items: center;
+  gap: 10px;
+}
+
+.gallery-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 6px 20px;
+  scroll-behavior: smooth;
+}
+
+.gallery-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.gallery-track::-webkit-scrollbar-thumb {
+  background: rgba(107, 68, 35, 0.3);
+  border-radius: 999px;
+}
+
+.gallery-slide {
+  scroll-snap-align: start;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 14px 28px rgba(107, 68, 35, 0.15);
+  background: var(--bg-cream);
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.gallery-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(107, 68, 35, 0.2);
+  background: white;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(107, 68, 35, 0.15);
+  transition: var(--transition-smooth);
+}
+
+.gallery-btn::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.gallery-btn.next::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.gallery-btn:hover {
+  transform: translateY(-2px);
+}
+
 /* Access Table */
 #access {
   background-color: var(--bg-light) !important;
+}
+
+.access-grid {
+  justify-items: center;
 }
 
 .access-info {
@@ -476,6 +575,12 @@ section {
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(107, 68, 35, 0.05);
   border: 1px solid rgba(212, 165, 116, 0.2);
+  width: 100%;
+}
+
+.access-map > div {
+  aspect-ratio: 4 / 3;
+  min-height: 600px;
 }
 
 .access-table {
@@ -484,9 +589,9 @@ section {
 }
 
 .access-table th {
-  text-align: left;
+  text-align: center;
   padding: 20px 0;
-  width: 120px;
+  width: 30%;
   color: var(--primary-color);
   font-weight: 600;
   border-bottom: 1px solid var(--border-color);
@@ -495,6 +600,20 @@ section {
 .access-table td {
   padding: 20px 0;
   border-bottom: 1px solid var(--border-color);
+}
+
+.address-line {
+  white-space: nowrap;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .address-line {
+    white-space: normal;
+  }
 }
 
 /* Footer */
@@ -553,7 +672,70 @@ footer::before {
 
 @media (max-width: 768px) {
   :root {
-    --section-padding: 80px 20px;
+    --section-padding: 70px 16px;
+  }
+
+  .hero {
+    height: 88vh;
+  }
+
+  .hero-content {
+    padding-top: 20px;
+  }
+
+  .section-title h2 {
+    font-size: 1.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .section-title span {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+  }
+
+  .section-title {
+    margin-bottom: 40px;
+  }
+
+  #menu-items,
+  #gallery {
+    padding-top: 50px;
+    padding-bottom: 60px;
+  }
+
+  .concept-text,
+  .feature-text,
+  .access-info {
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  .concept-text p,
+  .feature-text p {
+    margin-top: 18px;
+  }
+
+  .usp-item,
+  .access-info,
+  .menu-card,
+  .gallery-slide,
+  .feature-img img {
+    border-radius: 10px;
+  }
+
+  .usp-item,
+  .access-info,
+  .menu-card,
+  .gallery-slide {
+    box-shadow: 0 10px 24px rgba(107, 68, 35, 0.12);
+  }
+
+  .pc-only {
+    display: none;
+  }
+
+  .sp-only {
+    display: block;
   }
 
   .menu-toggle {
@@ -588,12 +770,12 @@ footer::before {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
+    width: 90%;
     height: 100vh;
     background-color: #2b1a10;
     flex-direction: column;
     justify-content: center;
-    padding: 60px;
+    padding: 80px 36px;
     transition: var(--transition-smooth);
     z-index: 1000;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.35);
@@ -626,12 +808,13 @@ footer::before {
 
 
   .hero-content h1 {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
+    line-height: 1.2;
   }
 
   .hero-content p {
-    font-size: 1.1rem;
-    letter-spacing: 0.1em;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
   }
 
   .usp-grid {
@@ -654,9 +837,81 @@ footer::before {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .menu-card {
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+  }
+
   .menu-card img {
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     background-color: var(--bg-cream);
+  }
+
+  .gallery-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-btn {
+    display: none;
+  }
+
+  .gallery-track {
+    grid-auto-columns: 82%;
+    padding: 10px 2px 18px;
+  }
+
+  .gallery-slide img {
+    height: 200px;
+  }
+
+  #access {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #access .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .access-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    justify-items: center;
+  }
+
+  .access-info,
+  .access-map {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .access-info {
+    padding: 24px 16px;
+  }
+
+  .access-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .access-table th {
+    width: 36%;
+    font-size: 0.95rem;
+  }
+
+  .access-table td {
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+
+  .access-map > div {
+    aspect-ratio: 4 / 3;
+    min-height: 320px;
   }
 }

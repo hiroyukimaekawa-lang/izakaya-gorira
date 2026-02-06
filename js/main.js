@@ -54,4 +54,47 @@ document.addEventListener('DOMContentLoaded', () => {
       hero.classList.add('active');
     }, 100);
   }
+
+  // 5. Gallery Carousel Buttons
+  const galleryTrack = document.querySelector('.gallery-track');
+  const galleryPrev = document.querySelector('.gallery-btn.prev');
+  const galleryNext = document.querySelector('.gallery-btn.next');
+
+  if (galleryTrack && galleryPrev && galleryNext) {
+    const scrollByAmount = () => galleryTrack.clientWidth * 0.8;
+    galleryPrev.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
+    });
+    galleryNext.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
+    });
+  }
+
+  // 6. Gallery Auto Scroll
+  if (galleryTrack) {
+    let autoScrollId;
+    const startAutoScroll = () => {
+      stopAutoScroll();
+      autoScrollId = setInterval(() => {
+        const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+        const nextLeft = galleryTrack.scrollLeft + galleryTrack.clientWidth * 0.6;
+        galleryTrack.scrollTo({
+          left: nextLeft >= maxScroll ? 0 : nextLeft,
+          behavior: 'smooth'
+        });
+      }, 3500);
+    };
+    const stopAutoScroll = () => {
+      if (autoScrollId) {
+        clearInterval(autoScrollId);
+        autoScrollId = null;
+      }
+    };
+
+    startAutoScroll();
+    galleryTrack.addEventListener('mouseenter', stopAutoScroll);
+    galleryTrack.addEventListener('mouseleave', startAutoScroll);
+    galleryTrack.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    galleryTrack.addEventListener('touchend', startAutoScroll);
+  }
 });
