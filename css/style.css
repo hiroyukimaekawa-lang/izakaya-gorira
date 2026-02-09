@@ -133,6 +133,20 @@ img {
   transform: translateY(-3px);
 }
 
+.btn-ig {
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin: 0 6px;
+}
+
+.note-small {
+  font-size: 0.72rem;
+  color: #6a4a34;
+}
+
 /* Header */
 header {
   height: var(--header-height);
